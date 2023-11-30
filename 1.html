@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="1.css" />
+  </head>
+  <body>
+    <h3>Car Smart DashBoard</h3>
+
+    <!--
+README: Currently only webkit-based browsers support all required features. List of browsers non-supporting exact feature: 
+
+## IE ##
+- ES6+
+- CSS variables
+
+## Edge ##
+- CSS variables
+
+## Firefox ##
+- Calc for degrees (non-length units in general)
+
+## Safari ##
+- Nested Calcs - to make it work properly, targeting CSS hack was required and one rule rewritten. Otherwise works well!
+
+-->
+    <div id="dashboard">
+      <div
+        class="flex-container"
+        style="
+          display: flex;
+          align-items: center;
+          margin-top: 2rem;
+          margin-left: 3rem;
+          border-radius: 240px;
+          border: 2px solid aquamarine;
+          padding: 10px;
+          border-width: 0.3rem;
+          outline: 2px solid navy;
+        "
+      >
+        <div id="revmeter">
+          <div
+            class="gauge"
+            style="
+              --rpm: 750;
+              --limiter: 6700;
+              --gauge-value: var(--rpm) / 1000;
+            "
+          >
+            <div class="digit">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+
+              <div class="label">0</div>
+            </div>
+            <div class="digit">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+
+              <div class="label">1</div>
+            </div>
+            <div class="digit">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+
+              <div class="label">2</div>
+            </div>
+            <div class="digit">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+
+              <div class="label">3</div>
+            </div>
+            <div class="digit">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+
+              <div class="label">4</div>
+            </div>
+            <div class="digit">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+
+              <div class="label">5</div>
+            </div>
+            <div class="digit">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="highlighted line"></span>
+              <span class="highlighted line"></span>
+              <span class="highlighted line"></span>
+
+              <div class="label">6</div>
+            </div>
+            <div class="digit">
+              <span class="highlighted line"></span>
+              <span class="highlighted line"></span>
+              <span class="highlighted line"></span>
+              <span class="highlighted line"></span>
+              <span class="separating line"></span>
+              <span class="highlighted line"></span>
+              <span class="highlighted line"></span>
+              <span class="highlighted line"></span>
+              <span class="highlighted line"></span>
+
+              <div class="label">7</div>
+            </div>
+            <div class="digit">
+              <div class="label">8</div>
+            </div>
+
+            <div class="limiter"></div>
+
+            <div class="pointer">
+              <div class="hand"></div>
+            </div>
+
+            <div class="gear"></div>
+          </div>
+        </div>
+        <div class="parking-lights"></div>
+        <div class="headlight"></div>
+
+        <div class="car">
+          <div class="left-indicator"></div>
+          <div class="right-indicator"></div>
+        </div>
+
+        <div id="speedmeter">
+          <div
+            class="gauge"
+            style="
+              --kmh: 0;
+              --start-angle: 0deg;
+              --digits-angle: 30deg;
+              --lines-count: 6;
+              --digits-count: 10;
+              --gauge-value: var(--kmh) / 30;
+            "
+          >
+            <div class="digit">
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">0</div>
+            </div>
+
+            <div class="digit">
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="highlighted separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">30</div>
+            </div>
+
+            <div class="digit">
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">60</div>
+            </div>
+
+            <div class="highlighted digit">
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">90</div>
+            </div>
+
+            <div class="digit">
+              <span class="line"></span>
+              <span class="highlighted separating line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">120</div>
+            </div>
+
+            <div class="digit">
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">150</div>
+            </div>
+
+            <div class="digit">
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">180</div>
+            </div>
+
+            <div class="digit">
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">210</div>
+            </div>
+
+            <div class="digit">
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+              <span class="separating line"></span>
+              <span class="line"></span>
+
+              <div class="label">240</div>
+            </div>
+
+            <div class="digit">
+              <div class="label">270</div>
+            </div>
+
+            <div class="pointer">
+              <div class="hand"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="controls">
+      <label>
+        Revs:
+        <input
+          type="number"
+          name="rpm"
+          value="750"
+          min="0"
+          max="6700"
+          step="100"
+        />
+        RPM </label
+      ><br />
+
+      <label>
+        Speed:
+        <input type="number" name="kmh" value="0" min="0" max="270" step="1" />
+        km/h </label
+      ><br />
+
+      <label
+        >Gear:
+        <input type="number" name="gear" value="0" min="0" max="6" />
+      </label>
+
+      <br />
+      <br />
+      <br />
+
+      <button name="gear-down">&lt;</button>
+      <button name="throttle">THROTTLE</button>
+      <button name="gear-up">&gt;</button>
+
+      <br />
+      <br />
+      <br />
+
+      <h4>Gear ratios:</h4>
+
+      <label>
+        1:
+        <input
+          type="range"
+          min="24"
+          max="140"
+          value="125"
+          name="gear-1"
+          data-min="79"
+          data-max="140"
+        />
+        <span>1/125</span> </label
+      ><br />
+
+      <label>
+        2:
+        <input
+          type="range"
+          min="24"
+          max="140"
+          value="78"
+          name="gear-2"
+          data-min="53"
+          data-max="124"
+        />
+        <span>1/78</span> </label
+      ><br />
+
+      <label>
+        3:
+        <input
+          type="range"
+          min="24"
+          max="140"
+          value="52"
+          name="gear-3"
+          data-min="41"
+          data-max="77"
+        />
+        <span>1/52</span> </label
+      ><br />
+
+      <label>
+        4:
+        <input
+          type="range"
+          min="24"
+          max="140"
+          value="40"
+          name="gear-4"
+          data-min="33"
+          data-max="51"
+        />
+        <span>1/40</span> </label
+      ><br />
+
+      <label>
+        5:
+        <input
+          type="range"
+          min="24"
+          max="140"
+          value="32"
+          name="gear-5"
+          data-min="28"
+          data-max="39"
+        />
+        <span>1/32</span> </label
+      ><br />
+
+      <label>
+        6:
+        <input
+          type="range"
+          min="24"
+          max="140"
+          value="27"
+          name="gear-6"
+          data-min="24"
+          data-max="31"
+        />
+        <span>1/27</span>
+      </label>
+
+      <button id="left-button">Start Left Indicator</button>
+      <button id="right-button">Start Right Indicator</button>
+      <button id="stop-button">Stop</button>
+      <button id="low-beam">Low Beam</button>
+      <button id="high-beam">High Beam</button>
+      <button id="parkingLightsButton">Toggle Parking Lights</button>
+    </div>
+    <script src="1.js"></script>
+  </body>
+</html>
